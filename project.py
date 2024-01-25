@@ -46,39 +46,9 @@ file = open('project_csv.csv', 'w')
 file = csv.writer(file)
 # Write the header row
 file.writerow(['Job_Title', 'Company', 'Location'])
-# Take user input for the number of records
-n = counter
 # Loop through the records and write them to the file
-for i in range(n):
+for i in range(counter):
     title = titles[i]
     company = companies[i]
     location = locations[i]
     file.writerow([title, company, location])
-# Close the file
-file.close()
-
-# # Import csv module
-# import csv
- 
-# # Open the excel file in write mode
-# file = open('project_csv.xlsx', 'w')
-
-# # Create a csv writer object
-# file = csv.writer(file)
-
-# # Write the header row
-# file.writerow(['Name', 'Age', 'Enrollment Number'])
-
-# # Take user input for the number of records
-# n = counter
-
-# # Loop through the records and write them to the file
-# for i in range(n):
-#     title = input({i+1})
-#     company = input({i+1})
-#     location = input({i+1})
-#     file.writerow([title, company, location])
-
-# # Close the file
-# file.close()
-
