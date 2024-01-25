@@ -1,6 +1,11 @@
 import csv
 import requests
 from bs4 import BeautifulSoup
+from datetime import datetime
+import time
+from colorama import Fore,Back,Style
+
+startTime=time.time()
 
 URL = "https://realpython.github.io/fake-jobs/"
 page = requests.get(URL)
@@ -32,12 +37,12 @@ for job_element in job_elements:
     locations.append(location_element.text.strip())
     counter+=1
 
-    print()
-    print(title_element.text.strip())
-    print(company_element.text.strip())
-    print(location_element.text.strip())
-    print()
-    print()
+    # print()
+    # print(title_element.text.strip())
+    # print(company_element.text.strip())
+    # print(location_element.text.strip())
+    # print()
+    # print()
 
 
 # Open the excel file in write mode
@@ -52,3 +57,10 @@ for i in range(counter):
     company = companies[i]
     location = locations[i]
     file.writerow([title, company, location])
+
+
+endTime=time.time()
+
+turnAroundTime=endTime-startTime
+print('\n\n')
+print(f'Turnaround Time in '+Fore.GREEN+'regular'+Fore.WHITE+f' mode: {Fore.LIGHTBLUE_EX}{turnAroundTime*1000} ms{Fore.WHITE}')
