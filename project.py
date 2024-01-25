@@ -63,4 +63,4 @@ endTime=time.time()
 
 turnAroundTime=endTime-startTime
 print('\n\n')
-print(f'Turnaround Time in '+Fore.GREEN+'regular'+Fore.WHITE+f' mode: {Fore.LIGHTBLUE_EX}{turnAroundTime*1000} ms{Fore.WHITE}')
+print(f'Turnaround Time in '+Fore.GREEN+'regular'+Fore.WHITE+f' mode: {Fore.LIGHTBLUE_EX}{turnAroundTime*1000} ms{Fore.WHITE}\n\n')
