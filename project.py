@@ -4,8 +4,19 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 import time
 from colorama import Fore,Back,Style
+import threading
 
+thread1=threading.Thread(target='' , name='Thread_1')
+thread2=threading.Thread(target='' , name='Thread_2')
+counter=0
+def Scarping():
+    
+
+if counter==0:
+
+#Starting Timer for Turnaround Time
 startTime=time.time()
+
 
 URL = "https://realpython.github.io/fake-jobs/"
 page = requests.get(URL)
@@ -13,6 +24,7 @@ counter=0
 titles=[]
 companies=[]
 locations=[]
+
 
 soup = BeautifulSoup(page.content,'html.parser')
 
