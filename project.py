@@ -7,19 +7,15 @@ from colorama import Fore,Back,Style
 import threading
 import concurrent.futures
 counter=0
-TT=0
+URL = "https://realpython.github.io/fake-jobs/"
+page = requests.get(URL)
+titles=[]
+companies=[]
+locations=[]
 
 def Scraping():
 
-    starttime=time.time()
-
-
-    URL = "https://realpython.github.io/fake-jobs/"
-    page = requests.get(URL)
     counter=0
-    titles=[]
-    companies=[]
-    locations=[]
 
     soup = BeautifulSoup(page.content,'html.parser')
 
@@ -50,8 +46,9 @@ def Scraping():
         # print(location_element.text.strip())
         # print()
         # print()
+    return counter
 
-
+def WritingFiles(count):
     # Open the excel file in write mode
     file = open('project_csv.csv', 'w')
     # Create a csv writer object
@@ -59,37 +56,40 @@ def Scraping():
     # Write the header row
     file.writerow(['Job_Title', 'Company', 'Location'])
     # Loop through the records and write them to the file
-    for i in range(counter):
+    for i in range(count):
         title = titles[i]
         company = companies[i]
         location = locations[i]
         file.writerow([title, company, location])
-    
-    endtime=time.time()
-
-    TT=endtime-starttime
 
 
 # startTime1=time.time()
 startTime1=time.time()
-Scraping()
+count = Scraping()
+WritingFiles(count)
 endTime1=time.time()
 # endTime1=time.time()
 
-print('\n\n')
-print(f'Turnaround Time in '+Fore.GREEN+'regular'+Fore.WHITE+f' mode: {Fore.LIGHTBLUE_EX}{(endTime1-startTime1)*1000} ms{Fore.WHITE}')
+
 
 startTime2=time.time()
-threadPool=concurrent.futures.ThreadPoolExecutor(max_workers=5)
+threadPool=concurrent.futures.ThreadPoolExecutor(max_workers=2)
 threadPool.submit(Scraping)
-threadPool.submit(Scraping)
-threadPool.shutdown(wait=True)
+threadPool.submit(WritingFiles(count))
+threadPool.shutdown(wait=False)
 endTime2=time.time()
 # startTime2=time.time()
 # Scraping()
 # endTime2=time.time()
 
+TT1=endTime1-startTime1
+TT2=endTime2-startTime2
 
 
+print('\n\n')
+print('----------------------------------------------------------------------------------------')
+print(f'Turnaround Time in '+Fore.GREEN+'regular'+Fore.WHITE+f' mode:             {Fore.LIGHTBLUE_EX}{TT1*1000} ms{Fore.WHITE}')
+print(f'Turnaround Time in '+Fore.YELLOW+'multithreading'+Fore.WHITE+f' mode:      {Fore.LIGHTBLUE_EX}{TT2*1000} ms{Fore.WHITE}\n')
+print(f'Performance improvement with multithreading:'+Fore.RED+f' {abs(TT2-TT1)*1000} ms'+Fore.WHITE)
+print('----------------------------------------------------------------------------------------\n\n')
 
-print(f'Turnaround Time in '+Fore.YELLOW+'multithreading'+Fore.WHITE+f' mode: {Fore.LIGHTBLUE_EX}{(endTime2-startTime2)*1000} ms{Fore.WHITE}\n\n')
