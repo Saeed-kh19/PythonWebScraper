@@ -6,6 +6,7 @@ import time
 from colorama import Fore,Back,Style
 import threading
 import concurrent.futures
+
 counter=0
 URL = "https://realpython.github.io/fake-jobs/"
 page = requests.get(URL)

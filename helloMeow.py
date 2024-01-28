@@ -66,6 +66,14 @@ def Scraping():
         file.writerow([title, company, location])
     
     endtime=time.time()
+    
+
+    url = "https://files.realpython.com/media/real-python-logo-thumbnail.7f0db70c2ed2.jpg?__no_cf_polish=1"
+    response = requests.get(url)
+
+    with open("image.jpg", "wb") as f:
+        f.write(response.content)
+
 
     TT=endtime-starttime
 
