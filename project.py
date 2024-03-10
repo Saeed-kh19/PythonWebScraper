@@ -174,7 +174,7 @@ TT2=endTime2-startTime2
 print('\n\n')
 print('----------------------------------------------------------------------------------------')
 print(f'Turnaround Time in '+Fore.GREEN+'serialized'+Fore.WHITE+f' mode:          {Fore.LIGHTBLUE_EX}{round(TT1,8)*1000} ms{Fore.WHITE}')
-print(f'Turnaround Time in '+Fore.YELLOW+'multithreading'+Fore.WHITE+f' mode:      {Fore.LIGHTBLUE_EX}{round(TT1,8)*1000} ms{Fore.WHITE}\n')
+print(f'Turnaround Time in '+Fore.YELLOW+'multithreading'+Fore.WHITE+f' mode:      {Fore.LIGHTBLUE_EX}{round(TT2,8)*1000} ms{Fore.WHITE}\n')
 print(f'Performance improvement with multithreading:'+Fore.RED+f' {round(abs(TT2-TT1),8)*1000} ms'+Fore.WHITE)
 print('----------------------------------------------------------------------------------------\n\n')
 
